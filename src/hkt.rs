@@ -18,7 +18,6 @@ pub trait HKT2<E, A> {
     type Error;
 }
 
-/*
 macro_rules! derive_hkt2 {
     ($t:ident) => {
         impl<T, E, A> HKT2<E, A> for $t<T> {
@@ -27,7 +26,6 @@ macro_rules! derive_hkt2 {
         }
     };
 }
-*/
 
 derive_hkt!(Option);
 derive_hkt!(Vec);

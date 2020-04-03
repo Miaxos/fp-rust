@@ -1,4 +1,5 @@
 use crate::either::Either;
+use crate::semigroup::{SemiTest, Semigroup};
 
 pub fn of<T>(elt: T) -> Option<T> {
     Option::Some(elt)
@@ -33,5 +34,16 @@ pub fn get_or_else<A, F: FnOnce() -> A>(on_none: F) -> impl FnOnce(Option<A>) ->
     move |elt| match elt {
         None => on_none(),
         Some(x) => x,
+    }
+}
+
+pub fn getApplySemigroup<A>(s: impl Semigroup<A>) -> impl Semigroup<Option<A>> {
+    SemiTest<Option<A>> {
+        concat: Box::new(|x: Option<A>, y: Option<A>| {
+            match (x, y) {
+                (Some(xval), Some(yval)) => Some(s::concat(xval, yval)),
+                _ => None,
+            }
+        })
     }
 }
