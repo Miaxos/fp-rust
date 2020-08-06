@@ -37,6 +37,7 @@ pub fn get_or_else<A, F: FnOnce() -> A>(on_none: F) -> impl FnOnce(Option<A>) ->
     }
 }
 
+/*
 pub fn getApplySemigroup<A>(s: impl Semigroup<A>) -> impl Semigroup<Option<A>> {
     SemiTest<Option<A>> {
         concat: Box::new(|x: Option<A>, y: Option<A>| {
@@ -47,3 +48,4 @@ pub fn getApplySemigroup<A>(s: impl Semigroup<A>) -> impl Semigroup<Option<A>> {
         })
     }
 }
+*/
